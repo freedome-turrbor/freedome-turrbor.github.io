@@ -1,0 +1,38 @@
+//AJAX
+var xmlHttp3;
+var xmlHttp3ResponseID;
+
+//create xmlHttp3Request object
+function createXMLHttpRequest3(){
+	if (window.XMLHttpRequest){
+		xmlHttp3 = new XMLHttpRequest();
+	}else if (window.ActiveXObject){
+		xmlHttp3 = new ActiveXObject('Msxml2.XMLHTTP');
+		if (! xmlHttp3){
+			xmlHttp3 = new ActiveXObject('Microsoft.XMLHTTP');
+		}
+	}
+}
+
+//XMLHttpRequest event handler
+function XMLHttpResponse3(){
+	if (xmlHttp3.readyState == 4 || xmlHttp3.readyState=='complete'){
+		if (xmlHttp3.status == 200){
+			xmlHttp3ResponseID.innerHTML = xmlHttp3.responseText;
+		}else {
+			xmlHttp3ResponseID.innerHTML = 'Not Detected';
+		}
+
+	}
+}
+
+
+//Get AJAX data
+function getAjaxData3(url, elementID){
+	xmlHttp3ResponseID = document.getElementById(elementID);
+	xmlHttp3ResponseID.innerHTML = '<img src="../images/wait16.png" alt="Loading....">';
+	createXMLHttpRequest3();
+	xmlHttp3.onreadystatechange = XMLHttpResponse3;
+	xmlHttp3.open("GET", url, true);
+	xmlHttp3.send(null);
+}

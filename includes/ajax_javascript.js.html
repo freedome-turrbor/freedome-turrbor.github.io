@@ -1,0 +1,39 @@
+//AJAX
+var xmlHttp;
+var xmlHttpResponseID;
+
+//create XMLHttpRequest object
+function createXMLHttpRequest2(){
+	if (window.XMLHttpRequest){
+		xmlHttp = new XMLHttpRequest();
+	}else if (window.ActiveXObject){
+		xmlHttp = new ActiveXObject('Msxml2.XMLHTTP');
+		if (! xmlHttp){
+			xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
+		}
+	}
+}
+
+//XMLHttpRequest event handler
+function XMLHttpResponse2(){
+	if (xmlHttp.readyState == 4 || xmlHttp.readyState=='complete'){
+		if (xmlHttp.status == 200 || xmlHttp.status == 202){
+			xmlHttpResponseID.innerHTML = xmlHttp.responseText;
+		}else {
+			xmlHttpResponseID.innerHTML = '<strong>Error connecting to server</strong>';
+		}
+
+	}
+	xmlHttpResponseID.scrollIntoView();
+}
+
+//Get AJAX data
+function getAjaxData2(url, elementID){
+	xmlHttpResponseID = document.getElementById(elementID);
+	xmlHttpResponseID.innerHTML = '<center><h2>Please wait while we get the results ....</h2><br><br><img src="../images/loading.png" alt="Running...." height="64" width="64"><br></center><br>';
+	xmlHttpResponseID.scrollIntoView();
+	createXMLHttpRequest2();
+	xmlHttp.onreadystatechange = XMLHttpResponse2;
+	xmlHttp.open("GET", "/dev-tools/ajax-" + url, true);
+	xmlHttp.send(null);
+}

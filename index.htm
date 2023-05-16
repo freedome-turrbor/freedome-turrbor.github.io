@@ -1,0 +1,141 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB" lang="en-GB" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>NsLookup Online Tool - DNS Lookup Tool</title>
+<meta name="Description" content="NsLookup Online Tool - DNS Lookup Tool. Free online tool to Look up DNS IPv4, IPv6, NS, MX, CNAME, SOA, PTR, SRV, TXT Records.">
+<meta name="Keywords" content="dns lookup tool,nslookup,tool,free,online,dns,dns records,nameservers,name server,mail servers,mx records">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="Copyright" content="2001-2023, Web Wiz">
+<link href="css?family=Open+Sans:300,400,600" rel="stylesheet" type="text/css">
+<link rel="canonical" href="nslookup.htm">
+<meta property="fb:page_id" content="185657894812417">
+<meta property="og:image" content="https://static.webwiz.net/images/web-wiz-facebook-logo.jpg">
+<link href="includes/default_style.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="includes/ajax_javascript.js.html"></script>
+<!-- speed uploading of wait image for IE -->
+<script language="JavaScript" type="text/javascript">
+<!-- 
+if (document.images){
+      preload_image = new Image(32,32); 
+      preload_image.src="https://static.webwiz.net/images/loading.png"; 
+    }
+-->  
+function changeDnsBox() {
+   if (document.getElementById('chkNameServers').checked) {
+        document.getElementById("server").disabled = true;
+        document.getElementById("server").style.background = "#EEE";
+        document.getElementById("recursion").disabled = true;
+    }else{
+        document.getElementById("server").disabled = false;
+        document.getElementById("server").style.background = "#FFF";
+        if (!document.getElementById('server').value == '') {
+        	document.getElementById("recursion").disabled = false;
+   	}
+   }
+}
+function changeServerText() {
+   if (document.getElementById('server').value == '') {
+   		document.getElementById("recursion").checked = true;
+        	document.getElementById("recursion").disabled = true;
+   	}
+}
+ </script>
+</head>
+<body style="overflow-x: hidden">
+
+<table border="0" align="center" cellpadding="0" cellspacing="0" class="container">
+  <tr>
+   <td height="340" align="left" valign="top">
+	<br>
+	
+     <!-- body -->
+   <br>
+   <table width="100%" border="0" cellspacing="0" cellpadding="4">
+    <tr>
+     <td align="left" valign="top"><h1>NsLookup Tool</h1>
+      <br>
+      <br>
+      Query a DNS  Domain Name Server to lookup and find DNS Records and IP address information.<br>
+      <br>
+      <br>
+      <table width="100%" border="0" align="center" cellpadding="5" cellspacing="0" style="background: url('images/net-tools-table-bg.png'); background-repeat: no-repeat; background-position: bottom right;  background-size: 40% 98%; background-color:#E7EEEF;" bgcolor="#E7EEEF">
+       <tr>
+        <td class="tblBorderTop"></td>
+        </tr>
+       <tr>
+        <td>
+          
+          <div style="padding:6px;">
+            To lookup a DNS Record for an Host, simply enter Domain or Hostname in the box provided.<br>
+            <br>
+            Enter Hostname or Domain<br>
+            <input name="host" type="text" id="host" value="" size="45" maxlength="100">
+            Type:
+            <select name="type" id="type">
+              <option value="A" selected="selected">A - IPv4 Address</option>
+              <option value="AAAA">AAAA - IPv6 Address</option>
+              <option value="CNAME">CNAME - Alias</option> 
+              <option value="NS">NS - Name Server</option> 
+              <option value="MX">MX - Mail Server</option> 
+              <option value="PTR">PTR - Reverse DNS</option> 
+              <option value="SOA">SOA - Start of Authority</option>
+              <option value="SRV">SRV - Service</option> 
+              <option value="TXT">TXT - Text Record</option> 
+              <option value="ANY">ANY - ANY Record</option> 
+              </select>
+            <br>
+            <input name="chkNameServers" type="checkbox" id="chkNameServers" value="true" onchange='changeDnsBox();'>
+Query each of the domains Authoritative DNS Name Servers<br>
+<br>
+            DNS Server (optional)<br>
+            <input name="server" type="text" id="server" value="" size="35" maxlength="100" onclick='document.getElementById("recursion").disabled = false;' onblur='changeServerText();'>
+            <input name="recursion" type="checkbox" id="recursion" value="true" checked="checked" disabled="disabled"> Recursive Lookup
+            <br>
+            <br>
+            <input name="search" type="button" value="Run NS Lookup" align="absmiddle" vspace="7" onclick="getAjaxData2('nslookup.htm?host63a4656z2cf=' + encodeURIComponent(document.getElementById('host').value) + '&type=' + document.getElementById('type').value + '&server=' + encodeURIComponent(document.getElementById('server').value) + '&recursion=' + document.getElementById('recursion').checked + '&chkNS=' + document.getElementById('chkNameServers').checked + '&EC9CE=7627656667a68', 'dns-records-output');this.blur();">
+            <br>
+          </div></td>
+        </tr>
+       <tr>
+        <td class="tblBorderBottom"></td>
+        </tr>
+      </table>
+      <br>
+      <br>
+      <br>
+      <div id="dns-records-output"></div>
+      
+     </td>
+    </tr>
+   </table>
+   <script>document.getElementById('host').focus()</script>
+   <br>
+   <br>
+      </td>
+  </tr>
+</table>
+
+<!-- footer -->
+<br>
+<table width="100%" height="200" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#F7F7F4" style="background: #F7F7F4 url('images/footer-backgorund.png') repeat-x 0px 0px;">
+  <tr>
+    <td class="tblBorderTop"></td>
+  </tr>
+  <tr>
+    <td valign="top">
+<div style="max-width:965px;margin-left:auto;margin-right:auto;margin-top:15px;"> 	
+ <div class="copy" style="max-width:960px;text-align:left;">
+  <div style="float: right; text-align: right; width: 240px;">
+   <a href="https://www.facebook.com/WebWiz" target="_blank"><img src="images/facebook.png" alt="Become a Fan on Facebook" title="Become a Fan on Facebook" width="32" height="32" hspace="2" border="0"></a>
+   <a href="https://www.twitter.com/WebWizUK" target="_blank"><img src="images/twitter.png" alt="Follow us on Twitter" title="Follow us on Twitter" width="32" height="32" hspace="2" border="0"></a>
+   <a href="https://www.linkedin.com/company/web-wiz" target="_blank"><img src="images/linkedin.png" alt="Connect with us on LinkedIn" title="Connect with us on LinkedIn" width="32" height="32" hspace="2" border="0"></a>
+   <a href="https://blogs.webwiz.net"><img src="images/blog.png" alt="Web Wiz Blogs" title="Web Wiz Blogs" width="32" height="32" hspace="2" border="0"></a>
+  </div>
+  
+<div style="max-width:965px;margin-left:auto;margin-right:auto;">Copyright &copy;2001-2023 Web Wiz Ltd. All rights reserved.</div>
+<br>
+</body>
+</html>
